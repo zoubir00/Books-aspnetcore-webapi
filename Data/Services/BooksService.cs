@@ -34,6 +34,17 @@ namespace My_Books.Data.Services
             }
             return _book;
         }
+        public void DelteBook(int bookId)
+        {
+            var bookToDelete = _context.Books.FirstOrDefault(b => b.Id == bookId);
+            if (bookToDelete != null)
+            {
+                _context.Books.Remove(bookToDelete);
+                _context.SaveChanges();
+            }  
+        }
+        // Delete
+
         public void Add(BookVM book)
         {
             var _book = new Book()
