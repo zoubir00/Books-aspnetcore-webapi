@@ -47,7 +47,7 @@ namespace My_Books.Migrations
                 table: "Books");
 
             migrationBuilder.DropTable(
-                name: "Publisher");
+                name: "Publisher"); 
 
             migrationBuilder.DropIndex(
                 name: "IX_Books_PublisherId",
