@@ -21,5 +21,13 @@ namespace My_Books.Controllers
             _service.AddAuthor(author);
             return Ok();
         }
+
+        // Get 
+        [HttpGet("Get-Authors-with-Books/{authorId}")]
+        public IActionResult GetAuthorsById(int authorId)
+        {
+            var response=_service.GetAuthorById(authorId);
+            return Ok(response);
+        }
     }
 }
