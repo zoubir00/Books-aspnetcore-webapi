@@ -13,6 +13,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Add services to the container.
 builder.Services.AddTransient<BooksService>();
 builder.Services.AddTransient<AuthorService>();
+builder.Services.AddTransient<PublisherService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -33,6 +34,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-AppDbInitializer.Seed(app);
+//AppDbInitializer.Seed(app);
 app.Run();
 
