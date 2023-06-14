@@ -27,7 +27,6 @@ namespace My_Books.Data.Services
                 _book.DateRead = book.IsRead ? book.DateRead.Value : null;
                 _book.Rate = book.IsRead ? book.Rate.Value : null;
                 _book.Genre = book.Genre;
-                _book.Author = book.Author;
                 _book.CoverUrl = book.CoverUrl;
 
                 _context.SaveChanges();
@@ -45,7 +44,7 @@ namespace My_Books.Data.Services
         }
         // Delete
 
-        public void Add(BookVM book)
+        public void AddBookWithAuthorsAndPublisher(BookVM book)
         {
             var _book = new Book()
             {
@@ -55,12 +54,23 @@ namespace My_Books.Data.Services
                 DateRead=book.IsRead ? book.DateRead.Value:null,
                 Rate= book.IsRead ? book.Rate.Value : null,
                 Genre = book.Genre,
-                Author = book.Author,
                 CoverUrl = book.CoverUrl,
+                PublisherId=book.publisherId
 
             };
             _context.Books.Add(_book);
             _context.SaveChanges();
+
+            foreach(var Id in book.AuthorsIds)
+            {
+                var _Author_Book = new Book_Authors()
+                {
+                    bookId = _book.Id,
+                    AuthorId = Id
+                };
+                _context.Book_Authors.Add(_Author_Book);
+                _context.SaveChanges();
+            }
         }
     }
 }
