@@ -13,7 +13,24 @@ namespace My_Books.Data.Services
             _context = context;
         }
 
-        public List<Book> GetAllBooks() => _context.Books.ToList();
+        public List<BookWithAuthorsVM> GetAllBooks() 
+        {
+            var _bookwithAuthors = _context.Books.Select(b => new BookWithAuthorsVM()
+            {
+                Title = b.Title,
+                Description = b.Description,
+                IsRead = b.IsRead,
+                DateRead = b.IsRead ? b.DateRead.Value : null,
+                Rate = b.IsRead ? b.Rate.Value : null,
+                Genre = b.Genre,
+                CoverUrl = b.CoverUrl,
+                publisherName = b.Publisher.Name,
+                AuthorsName = b.Book_Authors.Select(ba => ba.Author.FullName).ToList()
+            }).ToList();
+            return _bookwithAuthors;
+
+
+        }
         public BookWithAuthorsVM GetBookById(int bookId)
         {
             var _bookWithAuthors = _context.Books.Where(n=>n.Id==bookId).Select(book => new BookWithAuthorsVM()
