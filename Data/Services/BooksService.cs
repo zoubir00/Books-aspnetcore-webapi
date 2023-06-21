@@ -1,5 +1,7 @@
 ﻿using My_Books.Data.Models;
 using My_Books.Data.ViewModels;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 using System.Threading;
 
 namespace My_Books.Data.Services
@@ -54,6 +56,13 @@ namespace My_Books.Data.Services
 
         public Book UpdateBook(int bookId,BookVM book)
         {
+            var options = new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            };
+
+            string json = JsonSerializer.Serialize(book, options);
+
             var _book= _context.Books.FirstOrDefault(n => n.Id == bookId)!;
             if (_book != null)
             {
@@ -64,7 +73,32 @@ namespace My_Books.Data.Services
                 _book.Rate = book.IsRead ? book.Rate.Value : null;
                 _book.Genre = book.Genre;
                 _book.CoverUrl = book.CoverUrl;
+                _book.PublisherId = book.publisherId;
+                // Update author
+                var existAuthors = _context.Book_Authors.Where(n => n.bookId == _book.Id).Select(a => a.AuthorId).ToList();
+                var newAuthorIds = book.AuthorsIds.Except(existAuthors).ToList();
+                var removedAuthorIds = existAuthors.Except(book.AuthorsIds).ToList();
 
+                foreach (var id in removedAuthorIds)
+                {
+                    var bookAuthorToRemove = _book.Book_Authors.FirstOrDefault(ab => ab.bookId == _book.Id && ab.AuthorId == id);
+                    if (bookAuthorToRemove != null)
+                    {
+                        _context.Book_Authors.Remove(bookAuthorToRemove);
+                    }
+                }
+
+                foreach (var id in newAuthorIds)
+                {
+                    var _Author_Book = new Book_Authors()
+                    {
+                        bookId = _book.Id,
+                        AuthorId = id
+                    };
+                    _context.Book_Authors.Add(_Author_Book);
+                    
+                }
+                
                 _context.SaveChanges();
             }
             return _book;
