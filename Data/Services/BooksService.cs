@@ -74,30 +74,30 @@ namespace My_Books.Data.Services
                 _book.Genre = book.Genre;
                 _book.CoverUrl = book.CoverUrl;
                 _book.PublisherId = book.publisherId;
-                // Update author
-                var existAuthors = _context.Book_Authors.Where(n => n.bookId == _book.Id).Select(a => a.AuthorId).ToList();
-                var newAuthorIds = book.AuthorsIds.Except(existAuthors).ToList();
-                var removedAuthorIds = existAuthors.Except(book.AuthorsIds).ToList();
+                //// Update author
+                //var existAuthors = _context.Book_Authors.Where(n => n.bookId == _book.Id).Select(a => a.AuthorId).ToList();
+                //var newAuthorIds = book.AuthorsIds.Except(existAuthors).ToList();
+                //var removedAuthorIds = existAuthors.Except(book.AuthorsIds).ToList();
 
-                foreach (var id in removedAuthorIds)
-                {
-                    var bookAuthorToRemove = _book.Book_Authors.FirstOrDefault(ab => ab.bookId == _book.Id && ab.AuthorId == id);
-                    if (bookAuthorToRemove != null)
-                    {
-                        _context.Book_Authors.Remove(bookAuthorToRemove);
-                    }
-                }
+                //foreach (var id in removedAuthorIds)
+                //{
+                //    var bookAuthorToRemove = _context.Book_Authors.FirstOrDefault(ab => ab.bookId == _book.Id && ab.AuthorId == id);
+                //    if (bookAuthorToRemove != null)
+                //    {
+                //        _context.Book_Authors.Remove(bookAuthorToRemove);
+                //    }
+                //}
 
-                foreach (var id in newAuthorIds)
-                {
-                    var _Author_Book = new Book_Authors()
-                    {
-                        bookId = _book.Id,
-                        AuthorId = id
-                    };
-                    _context.Book_Authors.Add(_Author_Book);
+                //foreach (var id in newAuthorIds)
+                //{
+                //    var _Author_Book = new Book_Authors()
+                //    {
+                //        bookId = _book.Id,
+                //        AuthorId = id
+                //    };
+                //    _context.Book_Authors.Add(_Author_Book);
                     
-                }
+                //}
                 
                 _context.SaveChanges();
             }
