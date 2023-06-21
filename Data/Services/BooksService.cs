@@ -13,6 +13,7 @@ namespace My_Books.Data.Services
             _context = context;
         }
 
+        // Get all books V
         public List<BookWithAuthorsVM> GetAllBooks() 
         {
             var _bookwithAuthors = _context.Books.Select(b => new BookWithAuthorsVM()
@@ -31,6 +32,8 @@ namespace My_Books.Data.Services
 
 
         }
+        // Get book by Id V
+
         public BookWithAuthorsVM GetBookById(int bookId)
         {
             var _bookWithAuthors = _context.Books.Where(n=>n.Id==bookId).Select(book => new BookWithAuthorsVM()
@@ -66,6 +69,8 @@ namespace My_Books.Data.Services
             }
             return _book;
         }
+        
+        // Delete
         public void DelteBook(int bookId)
         {
             var bookToDelete = _context.Books.FirstOrDefault(b => b.Id == bookId);
@@ -75,8 +80,8 @@ namespace My_Books.Data.Services
                 _context.SaveChanges();
             }  
         }
-        // Delete
-
+        
+        //Add book V
         public void AddBookWithAuthorsAndPublisher(BookVM book)
         {
             var _book = new Book()
@@ -94,14 +99,14 @@ namespace My_Books.Data.Services
             _context.Books.Add(_book);
             _context.SaveChanges();
 
-            foreach(var Id in book.AuthorsIds)
+            foreach(var id in book.AuthorsIds)
             {
                 var _Author_Book = new Book_Authors()
                 {
                     bookId = _book.Id,
-                    AuthorId = Id
+                    AuthorId = id
                 };
-                _context.Book_Authors.Add(_Author_Book);
+                _context.Book_Authors.AddRange(_Author_Book);
                 _context.SaveChanges();
             }
         }
