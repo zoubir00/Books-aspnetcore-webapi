@@ -4,7 +4,7 @@ using My_Books.Data.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnectionString");
+var connectionString = builder.Configuration.GetConnectionString("AzureDefaultConnectionString");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(connectionString);
@@ -28,6 +28,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My_Books v1");
+    c.RoutePrefix = string.Empty;
+});
+
+
 
 app.UseHttpsRedirection();
 
