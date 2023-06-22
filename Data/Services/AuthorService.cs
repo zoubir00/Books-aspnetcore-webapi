@@ -31,5 +31,11 @@ namespace My_Books.Data.Services
             }).FirstOrDefault();
             return _authorwithBooks;
         }
+
+        public List<Author> GetAllAuthors()
+        {
+            var _authorList = _context.Authors.ToList();
+            return _authorList;
+        }
     }
 }

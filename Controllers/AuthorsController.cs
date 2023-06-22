@@ -29,5 +29,13 @@ namespace My_Books.Controllers
             var response=_service.GetAuthorById(authorId);
             return Ok(response);
         }
+
+        // Get 
+        [HttpGet]
+        public IActionResult GetAllAuthors()
+        {
+            var response = _service.GetAllAuthors();
+            return Ok(response);
+        }
     }
 }
