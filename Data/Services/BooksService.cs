@@ -3,6 +3,7 @@ using My_Books.Data.ViewModels;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Threading;
+using Microsoft.EntityFrameworkCore;
 
 namespace My_Books.Data.Services
 {
@@ -20,6 +21,7 @@ namespace My_Books.Data.Services
         {
             var _bookwithAuthors = _context.Books.Select(b => new BookWithAuthorsVM()
             {
+                Id=b.Id,
                 Title = b.Title,
                 Description = b.Description,
                 IsRead = b.IsRead,
@@ -40,6 +42,7 @@ namespace My_Books.Data.Services
         {
             var _bookWithAuthors = _context.Books.Where(n=>n.Id==bookId).Select(book => new BookWithAuthorsVM()
             {
+                Id=book.Id,
                 Title = book.Title,
                 Description = book.Description,
                 IsRead = book.IsRead,
@@ -144,5 +147,15 @@ namespace My_Books.Data.Services
                 _context.SaveChanges();
             }
         }
+
+        // get list of authors
+        //public async Task<NewBookDropDownVM> GetNewBooksDropdownsVlaues()
+        //{
+        //    var response = new NewBookDropDownVM()
+        //    {
+        //        authors = await _context.Authors.OrderBy(n=>n.FullName).ToListAsync()
+        //    };
+        //    return response;
+        //}
     }
 }

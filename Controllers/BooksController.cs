@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using My_Books.Data;
 using My_Books.Data.Models;
 using My_Books.Data.Services;
@@ -37,10 +38,15 @@ namespace My_Books.Controllers
             return Ok(book);
         }
 
+    
         // Post: api/Books/AddBook
         [HttpPost("Add-books-with-AuthorsandPublisher")]
-        public IActionResult AddBookwithAuthorsndPublisher([FromBody] BookVM book)
+        public  IActionResult AddBookwithAuthorsndPublisher([FromBody] BookVM book)
         {
+            //var booksdropdownData =await _service.GetNewBooksDropdownsVlaues();
+
+            //HttpContext.Items["AuthorList"] = new MultiSelectList(booksdropdownData.authors,"Id", "FullName");
+
             _service.AddBookWithAuthorsAndPublisher(book);
             return Ok();
         }
