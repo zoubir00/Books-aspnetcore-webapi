@@ -30,6 +30,7 @@ namespace My_Books.Controllers
         }
 
 
+
         //Get: api/Books/GetBookById
         [HttpGet("get-book-by-id/{bookId}")]
         public IActionResult GetBookById(int bookId)
@@ -43,12 +44,15 @@ namespace My_Books.Controllers
         [HttpPost("Add-books-with-AuthorsandPublisher")]
         public  IActionResult AddBookwithAuthorsndPublisher([FromBody] BookVM book)
         {
-            //var booksdropdownData =await _service.GetNewBooksDropdownsVlaues();
-
-            //HttpContext.Items["AuthorList"] = new MultiSelectList(booksdropdownData.authors,"Id", "FullName");
-
             _service.AddBookWithAuthorsAndPublisher(book);
             return Ok();
+        }
+        // get booksVm
+        [HttpGet]
+        public IActionResult GetBooks()
+        {
+            var AllBooks = _service.GetBooks();
+            return Ok(AllBooks);
         }
 
         // put: api/Books/EditBook

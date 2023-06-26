@@ -33,6 +33,25 @@ namespace My_Books.Data.Services
                 AuthorsName = b.Book_Authors.Select(ba => ba.Author.FullName).ToList()
             }).ToList();
             return _bookwithAuthors;
+        }
+
+        // get books
+        public List<BookVM> GetBooks()
+        {
+            var _bookwithAuthors = _context.Books.Select(b => new BookVM()
+            {
+                Id = b.Id,
+                Title = b.Title,
+                Description = b.Description,
+                IsRead = b.IsRead,
+                DateRead = b.IsRead ? b.DateRead.Value : null,
+                Rate = b.IsRead ? b.Rate.Value : null,
+                Genre = b.Genre,
+                CoverUrl = b.CoverUrl,
+                publisherId = b.Publisher.Id,
+                AuthorsIds = b.Book_Authors.Select(ba => ba.Author.Id).ToList()
+            }).ToList();
+            return _bookwithAuthors;
 
 
         }
@@ -59,13 +78,6 @@ namespace My_Books.Data.Services
 
         public Book UpdateBook(int bookId,BookVM book)
         {
-            var options = new JsonSerializerOptions
-            {
-                ReferenceHandler = ReferenceHandler.Preserve
-            };
-
-            string json = JsonSerializer.Serialize(book, options);
-
             var _book= _context.Books.FirstOrDefault(n => n.Id == bookId)!;
             if (_book != null)
             {
@@ -76,32 +88,6 @@ namespace My_Books.Data.Services
                 _book.Rate = book.IsRead ? book.Rate.Value : null;
                 _book.Genre = book.Genre;
                 _book.CoverUrl = book.CoverUrl;
-                _book.PublisherId = book.publisherId;
-                //// Update author
-                //var existAuthors = _context.Book_Authors.Where(n => n.bookId == _book.Id).Select(a => a.AuthorId).ToList();
-                //var newAuthorIds = book.AuthorsIds.Except(existAuthors).ToList();
-                //var removedAuthorIds = existAuthors.Except(book.AuthorsIds).ToList();
-
-                //foreach (var id in removedAuthorIds)
-                //{
-                //    var bookAuthorToRemove = _context.Book_Authors.FirstOrDefault(ab => ab.bookId == _book.Id && ab.AuthorId == id);
-                //    if (bookAuthorToRemove != null)
-                //    {
-                //        _context.Book_Authors.Remove(bookAuthorToRemove);
-                //    }
-                //}
-
-                //foreach (var id in newAuthorIds)
-                //{
-                //    var _Author_Book = new Book_Authors()
-                //    {
-                //        bookId = _book.Id,
-                //        AuthorId = id
-                //    };
-                //    _context.Book_Authors.Add(_Author_Book);
-                    
-                //}
-                
                 _context.SaveChanges();
             }
             return _book;
