@@ -1,9 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using My_Books.Data.Models;
+using System.Reflection.Emit;
 
 namespace My_Books.Data
 {
-    public class ApplicationDbContext:DbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options)
         {
@@ -11,6 +14,7 @@ namespace My_Books.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+           
             modelBuilder.Entity<Book_Authors>()
                 .HasOne(b => b.Book)
                 .WithMany(ab => ab.Book_Authors)
@@ -21,6 +25,8 @@ namespace My_Books.Data
                .HasOne(a => a.Author)
                .WithMany(ab => ab.Book_Authors)
                .HasForeignKey(ai => ai.AuthorId);
+
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Book> Books { get; set; }
