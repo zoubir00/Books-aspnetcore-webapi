@@ -4,6 +4,11 @@ C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\My_Books.dll
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\My_Books.runtimeconfig.json
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\My_Books.pdb
+C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNet.Identity.Core.dll
+C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Microsoft.Data.SqlClient.dll
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Microsoft.EntityFrameworkCore.dll
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -11,6 +16,8 @@ C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Microsoft.Extensions.Caching.Memory.dll
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Microsoft.Extensions.Identity.Core.dll
+C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Microsoft.Identity.Client.dll
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Microsoft.IdentityModel.Logging.dll
