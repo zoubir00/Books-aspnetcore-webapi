@@ -35,9 +35,9 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-        ValidIssuer = "https://bookzwebapi.azurewebsites.net",
-        ValidAudience = "https://bookzwebapi.azurewebsites.net",
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("This is a key"))
+        ValidIssuer = builder.Configuration["AuthSetting:Issuer"],
+        ValidAudience = builder.Configuration["AuthSetting:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["AuthSetting:Key"]))
 
     };
 
@@ -48,15 +48,6 @@ builder.Services.AddScoped<IUserService,UserService>();
 builder.Services.AddTransient<BooksService>();
 builder.Services.AddTransient<AuthorService>();
 builder.Services.AddTransient<PublisherService>();
-
-
-
-
-
-
-
-   
-
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -77,8 +68,6 @@ app.UseSwaggerUI(c =>
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "My_Books v1");
     c.RoutePrefix = string.Empty;
 });
-
-
 
 app.UseHttpsRedirection();
 

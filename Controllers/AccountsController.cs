@@ -35,5 +35,24 @@ namespace My_Books.Controllers
             }
             return BadRequest("some properties are not valid");
         }
+
+
+        // Login 
+        [HttpPost("Login")]
+        public async Task<ActionResult<UserManagerResponse>> LoginUser(LoginVM model)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var rslt = await _service.LoginUser(model);
+                if (rslt.IsSuccess)
+                {
+                    return Ok(rslt);
+                }
+                return BadRequest(rslt);
+
+            }
+            return BadRequest("some properties are not valid");
+        }
     }
 }

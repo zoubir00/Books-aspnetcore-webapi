@@ -8,6 +8,7 @@ namespace My_Books.Data.Services
     public interface IUserService
     {
         Task<UserManagerResponse> RegisterUserAsync(RegisterVM model);
+        Task<UserManagerResponse> LoginUser(LoginVM model);
     }
 
     
