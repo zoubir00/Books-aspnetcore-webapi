@@ -28,6 +28,13 @@ namespace My_Books.Controllers
         {
             var response=_service.GetAuthorById(authorId);
             return Ok(response);
+        }  
+        // Get 
+        [HttpGet("AuthorById/{authorId}")]
+        public IActionResult AuthorsById(int authorId)
+        {
+            var response=_service.AuthorById(authorId);
+            return Ok(response);
         }
 
         // Get 
@@ -39,7 +46,7 @@ namespace My_Books.Controllers
         }
 
         // post edit authors
-        [HttpPost("Edit")]
+        [HttpPut("Edit/{id}")]
         public IActionResult EditAuthors(int id,[FromBody]AuthorVM author)
         {
             var authorToEdit = _service.EditAuthor(id, author);

@@ -55,5 +55,15 @@ namespace My_Books.Data.Services
             }
             return _author;
         }
+
+        public AuthorVM AuthorById(int AuthorId)
+        {
+            var _author = _context.Authors.Where(a => a.Id == AuthorId).Select(n=>new AuthorVM
+            {
+                FullName=n.FullName,
+                ImageURL=n.ImageURL
+            }).FirstOrDefault();
+            return _author;
+        }
     }
 }
