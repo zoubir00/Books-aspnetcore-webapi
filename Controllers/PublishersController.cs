@@ -24,6 +24,13 @@ namespace My_Books.Controllers
             _service.AddPublisher(publisher);
             return Ok();
         }
+        // get all publishers
+        [HttpGet("getPublishres")]
+        public IActionResult GetPublishers()
+        {
+            var publishers = _service.GetPublishers();
+            return Ok(publishers);
+        }
 
         //Get:
         [HttpGet("GetPublisher-Data/{publisherId}")]
