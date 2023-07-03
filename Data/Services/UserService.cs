@@ -14,6 +14,7 @@ namespace My_Books.Data.Services
     {
 
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signManager;
         private IConfiguration _configuration;
         public UserService(UserManager<ApplicationUser> userManager, IConfiguration configuration)
         {
@@ -61,7 +62,8 @@ namespace My_Books.Data.Services
             {
                 Message = tokenString,
                 IsSuccess = true,
-                Exparedate = token.ValidTo
+                Exparedate = token.ValidTo, 
+                User =appUser
             };
         }
 
@@ -96,8 +98,8 @@ namespace My_Books.Data.Services
                 return new UserManagerResponse
                 {
                     Message = "Registration has completed succussfely",
-                    IsSuccess = true
-
+                    IsSuccess = true,
+                    User = appUser
                 };
 
             }
@@ -108,5 +110,8 @@ namespace My_Books.Data.Services
                 Errors = result.Errors.Select(e => e.Description)
             };
         }
+
+       
+
     }
 }

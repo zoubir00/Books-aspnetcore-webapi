@@ -17,7 +17,9 @@ namespace My_Books.Data.Services
         {
             var _author = new Author()
             {
-                FullName = author.FullName
+                FullName = author.FullName,
+                ImageURL=author.ImageURL
+                
             };
             _context.Authors.Add(_author);
             _context.SaveChanges();
@@ -27,15 +29,31 @@ namespace My_Books.Data.Services
             var _authorwithBooks = _context.Authors.Where(a => a.Id == AuthorId).Select(n => new AuthorwithBooksVM()
             {
                 FullName=n.FullName,
+                ImageURL=n.ImageURL,
                 BooksTitle = n.Book_Authors.Select(b => b.Book.Title).ToList()
             }).FirstOrDefault();
             return _authorwithBooks;
         }
-
+        //GEt All authors
         public List<Author> GetAllAuthors()
         {
             var _authorList = _context.Authors.ToList();
             return _authorList;
+        }
+
+        // edit authors
+        public Author EditAuthor(int Id,AuthorVM author)
+        {
+            var _author = _context.Authors.Where(a => a.Id == Id).FirstOrDefault();
+           
+
+            if (_author != null)
+            {
+                _author.FullName = author.FullName;
+                _author.ImageURL = author.ImageURL;
+                _context.SaveChanges();
+            }
+            return _author;
         }
     }
 }

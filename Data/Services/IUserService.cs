@@ -9,6 +9,7 @@ namespace My_Books.Data.Services
     {
         Task<UserManagerResponse> RegisterUserAsync(RegisterVM model);
         Task<UserManagerResponse> LoginUser(LoginVM model);
+    
     }
 
     

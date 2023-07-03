@@ -37,5 +37,13 @@ namespace My_Books.Controllers
             var response = _service.GetAllAuthors();
             return Ok(response);
         }
+
+        // post edit authors
+        [HttpPost("Edit")]
+        public IActionResult EditAuthors(int id,[FromBody]AuthorVM author)
+        {
+            var authorToEdit = _service.EditAuthor(id, author);
+            return Ok(authorToEdit);
+        }
     }
 }
