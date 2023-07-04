@@ -36,7 +36,7 @@ namespace My_Books.Controllers
         [HttpGet("GetPublisher-Data/{publisherId}")]
         public IActionResult GetPublisherData(int publisherId)
         {
-           var publisherData= _service.GetPublisherwithBooksAndAuthor(publisherId);
+           var publisherData= _service.GetPublisherById(publisherId);
             return Ok(publisherData);
         }
 

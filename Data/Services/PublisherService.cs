@@ -31,6 +31,7 @@ namespace My_Books.Data.Services
         {
             var _publishers = _context.Publishers.Select(p => new PublisherwithBooksAndAuthorVM
             {
+                Id=p.Id,
                 Name = p.Name,
                 BookAuthors = p.Books.Select(n => new BookAuthorVM()
                 {
@@ -42,10 +43,11 @@ namespace My_Books.Data.Services
         }
         // Get Publisher with authors and Books
 
-        public PublisherwithBooksAndAuthorVM GetPublisherwithBooksAndAuthor(int publisherId)
+        public PublisherwithBooksAndAuthorVM GetPublisherById(int Id)
         {
-            var _publisherwithBooksAndAuthor = _context.Publishers.Where(p => p.Id == publisherId).Select(n => new PublisherwithBooksAndAuthorVM()
-            {
+            var _publisherwithBooksAndAuthor = _context.Publishers.Where(p => p.Id == Id).Select(n => new PublisherwithBooksAndAuthorVM()
+            {   
+               Id=n.Id,
                 Name = n.Name,
                 BookAuthors = n.Books.Select(b => new BookAuthorVM()
                 {

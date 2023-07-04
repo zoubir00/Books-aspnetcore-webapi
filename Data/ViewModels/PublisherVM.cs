@@ -2,11 +2,13 @@
 {
     public class PublisherVM
     {
+        public int Id { get; set; }
         public string Name { get; set; }
 
     }
     public class PublisherwithBooksAndAuthorVM
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public List<BookAuthorVM> BookAuthors { get; set; }
 
