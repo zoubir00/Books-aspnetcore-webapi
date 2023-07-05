@@ -9,5 +9,7 @@ namespace My_Books.Account.UserManager
         public IEnumerable<string> Errors { get; set; }
         public DateTime? Exparedate { get; set; }
         public ApplicationUser? User { get; set; }
+        public List<string> Roles { get; set; }
+        public string Token { get; set; }
     }
 }

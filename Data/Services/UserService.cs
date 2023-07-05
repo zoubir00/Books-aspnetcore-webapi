@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using My_Books.Account.UserManager;
 using My_Books.Data.Models;
 using My_Books.Data.ViewModels;
+using My_Books.helpers;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -16,10 +18,13 @@ namespace My_Books.Data.Services
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signManager;
         private IConfiguration _configuration;
-        public UserService(UserManager<ApplicationUser> userManager, IConfiguration configuration)
+        private readonly JWT _jwt;
+
+        public UserService(UserManager<ApplicationUser> userManager, IConfiguration configuration,IOptions<JWT> jwt)
         {
             _userManager = userManager;
             _configuration = configuration;
+            _jwt = jwt.Value;
         }
 
         //Login method
@@ -95,11 +100,16 @@ namespace My_Books.Data.Services
             var result = await _userManager.CreateAsync(appUser, model.Password);
             if (result.Succeeded)
             {
+               await _userManager.AddToRoleAsync(appUser, "User");
+                var jwtsecurityToken = await CreateJwtToken(appUser);
                 return new UserManagerResponse
                 {
                     Message = "Registration has completed succussfely",
                     IsSuccess = true,
-                    User = appUser
+                    User = appUser,
+                    Exparedate = jwtsecurityToken.ValidTo,
+                    Roles = new List<string> { "User" },
+                    Token = new JwtSecurityTokenHandler().WriteToken(jwtsecurityToken)
                 };
 
             }
@@ -111,7 +121,37 @@ namespace My_Books.Data.Services
             };
         }
 
-       
+        private async Task<JwtSecurityToken> CreateJwtToken(ApplicationUser user)
+        {
+            var userClaims = await _userManager.GetClaimsAsync(user);
+            var roles = await _userManager.GetRolesAsync(user);
+            var roleClaims = new List<Claim>();
+
+            foreach (var role in roles)
+                roleClaims.Add(new Claim("roles", role));
+
+            var claims = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.Name, user.FullName),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                new Claim("uid", user.Id)
+            }
+            .Union(userClaims)
+            .Union(roleClaims);
+
+            var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["AuthSetting:Key"]));
+            var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
+
+            var jwtSecurityToken = new JwtSecurityToken(
+                    issuer: _jwt.Issuer,
+                    audience: _jwt.Audience,
+                    claims: claims,
+                    expires: DateTime.Now.AddDays(30),
+                    signingCredentials: signingCredentials);
+
+            return jwtSecurityToken;
+        }
 
     }
 }

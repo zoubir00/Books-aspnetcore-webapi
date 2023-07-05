@@ -4,6 +4,7 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Threading;
 using Microsoft.EntityFrameworkCore;
+using Azure.Storage.Blobs;
 
 namespace My_Books.Data.Services
 {
@@ -119,6 +120,7 @@ namespace My_Books.Data.Services
                 PublisherId=book.publisherId
 
             };
+           
             _context.Books.Add(_book);
             _context.SaveChanges();
 
