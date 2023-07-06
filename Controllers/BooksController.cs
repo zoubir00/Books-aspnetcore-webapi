@@ -9,6 +9,7 @@ using My_Books.Data.ViewModels;
 
 namespace My_Books.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class BooksController : ControllerBase
@@ -20,8 +21,9 @@ namespace My_Books.Controllers
             _service = service;
         }
 
-        
+
         //Get: api/Books/GetAllBooks
+        [AllowAnonymous]
         [HttpGet("Get-All-Books")]
         public IActionResult GetAllBooks()
         {
@@ -32,6 +34,7 @@ namespace My_Books.Controllers
 
 
         //Get: api/Books/GetBookById
+        [AllowAnonymous]
         [HttpGet("get-book-by-id/{bookId}")]
         public IActionResult GetBookById(int bookId)
         {
@@ -48,6 +51,7 @@ namespace My_Books.Controllers
             return Ok();
         }
         // get booksVm
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult GetBooks()
         {

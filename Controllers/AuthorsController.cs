@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using My_Books.Data.Services;
 using My_Books.Data.ViewModels;
 
@@ -14,7 +15,7 @@ namespace My_Books.Controllers
         {
             _service = service;
         }
-
+        [Authorize]
         [HttpPost("Add-Author")]
         public IActionResult AddAuthor([FromBody] AuthorVM author)
         {
@@ -22,6 +23,7 @@ namespace My_Books.Controllers
             return Ok();
         }
 
+        
         // Get 
         [HttpGet("Get-Authors-with-Books/{authorId}")]
         public IActionResult GetAuthorsById(int authorId)
@@ -38,6 +40,7 @@ namespace My_Books.Controllers
         }
 
         // Get 
+        [Authorize]
         [HttpGet]
         public IActionResult GetAllAuthors()
         {
@@ -45,6 +48,7 @@ namespace My_Books.Controllers
             return Ok(response);
         }
 
+        [Authorize]
         // post edit authors
         [HttpPut("Edit/{id}")]
         public IActionResult EditAuthors(int id,[FromBody]AuthorVM author)

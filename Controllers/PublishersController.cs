@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using My_Books.Data.Services;
 using My_Books.Data.ViewModels;
 
 namespace My_Books.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PublishersController : ControllerBase
@@ -17,14 +19,16 @@ namespace My_Books.Controllers
         }
 
         //Post: AddPublisher
-
         [HttpPost("Add-publisher")]
         public IActionResult AddPublisher(PublisherVM publisher)
         {
             _service.AddPublisher(publisher);
             return Ok();
         }
+
+
         // get all publishers
+        [AllowAnonymous]
         [HttpGet("getPublishres")]
         public IActionResult GetPublishers()
         {
@@ -33,6 +37,7 @@ namespace My_Books.Controllers
         }
 
         //Get:
+        [AllowAnonymous]
         [HttpGet("GetPublisher-Data/{publisherId}")]
         public IActionResult GetPublisherData(int publisherId)
         {

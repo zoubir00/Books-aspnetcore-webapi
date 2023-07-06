@@ -4,11 +4,15 @@ C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\My_Books.dll
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\My_Books.runtimeconfig.json
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\My_Books.pdb
+C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Azure.Core.dll
+C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Azure.Storage.Blobs.dll
+C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Azure.Storage.Common.dll
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNet.Identity.Core.dll
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNetCore.Cryptography.Internal.dll
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Microsoft.Data.SqlClient.dll
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Microsoft.EntityFrameworkCore.dll
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -33,6 +37,8 @@ C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\System.Diagnostics.DiagnosticSource.dll
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\System.Drawing.Common.dll
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\System.IO.Hashing.dll
+C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\System.Memory.Data.dll
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\System.Runtime.Caching.dll
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\System.Security.Cryptography.ProtectedData.dll
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\obj\Release\net6.0\PubTmp\Out\System.Security.Permissions.dll

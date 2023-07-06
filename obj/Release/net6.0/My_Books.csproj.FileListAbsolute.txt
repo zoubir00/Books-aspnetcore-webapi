@@ -73,3 +73,9 @@ C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\bin\Release\net6.0\Micros
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\bin\Release\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\bin\Release\net6.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\bin\Release\net6.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\bin\Release\net6.0\Azure.Core.dll
+C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\bin\Release\net6.0\Azure.Storage.Blobs.dll
+C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\bin\Release\net6.0\Azure.Storage.Common.dll
+C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\bin\Release\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\bin\Release\net6.0\System.IO.Hashing.dll
+C:\Users\HP\OneDrive\Bureau\Internship\Webapi\My_Books\bin\Release\net6.0\System.Memory.Data.dll
