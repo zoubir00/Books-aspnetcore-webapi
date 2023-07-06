@@ -89,7 +89,26 @@ namespace My_Books.Data.Services
                 _book.Rate = book.IsRead ? book.Rate.Value : null;
                 _book.Genre = book.Genre;
                 _book.CoverUrl = book.CoverUrl;
+                _book.PublisherId = book.publisherId;
                 _context.SaveChanges();
+                var existingAuthors = _context.Book_Authors.Where(ba => ba.bookId == _book.Id).ToList();
+                _context.Book_Authors.RemoveRange(existingAuthors);
+                _context.SaveChanges();
+                // add new authors
+                foreach(var authorIds in book.AuthorsIds)
+                {
+                    var authorBook = new Book_Authors()
+                    {
+                        bookId = _book.Id,
+                        AuthorId = authorIds
+                    };
+                    _context.Book_Authors.AddRange(authorBook);
+                    
+                }
+                _context.SaveChanges();
+
+
+
             }
             return _book;
         }
