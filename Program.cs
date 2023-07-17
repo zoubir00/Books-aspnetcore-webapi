@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using My_Books.Data;
+using My_Books.Data.Interface;
 using My_Books.Data.Models;
 using My_Books.Data.Services;
 using System.Text;
@@ -45,6 +46,7 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddScoped<IUserService,UserService>();
+builder.Services.AddScoped<IBlobStorageService,BlobStorageService>();
 // Add services to the container.
 builder.Services.AddTransient<BooksService>();
 builder.Services.AddTransient<AuthorService>();
