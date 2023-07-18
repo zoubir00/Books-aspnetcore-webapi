@@ -20,9 +20,10 @@ namespace My_Books.Data.Services
         // Get all books V
         public List<BookWithAuthorsVM> GetAllBooks() 
         {
+            //var bookFiles = new BookFiles();
             var _bookwithAuthors = _context.Books.Select(b => new BookWithAuthorsVM()
             {
-                Id=b.Id,
+                Id = b.Id,
                 Title = b.Title,
                 Description = b.Description,
                 IsRead = b.IsRead,
@@ -31,7 +32,11 @@ namespace My_Books.Data.Services
                 Genre = b.Genre,
                 CoverUrl = b.CoverUrl,
                 publisherName = b.Publisher.Name,
-                AuthorsName = b.Book_Authors.Select(ba => ba.Author.FullName).ToList()
+                AuthorsName = b.Book_Authors.Select(ba => ba.Author.FullName).ToList(),
+                bookFile = b.Bookfiles.Where(c => c.BookId == b.Id).Select(e => e.blobUrl).ToList()
+                //bookFile= from bookFiles in _context.BookFiles
+                //          where bookFiles.BookId==b.Id
+                //          select bookFiles.blobUrl
             }).ToList();
             return _bookwithAuthors;
         }
@@ -71,7 +76,8 @@ namespace My_Books.Data.Services
                 Genre = book.Genre,
                 CoverUrl = book.CoverUrl,
                 publisherName = book.Publisher.Name,
-                AuthorsName = book.Book_Authors.Select(n => n.Author.FullName).ToList()
+                AuthorsName = book.Book_Authors.Select(n => n.Author.FullName).ToList(),
+                bookFile = book.Bookfiles.Where(c => c.BookId == book.Id).Select(e => e.blobUrl).ToList()
 
             }).FirstOrDefault();
             return _bookWithAuthors;

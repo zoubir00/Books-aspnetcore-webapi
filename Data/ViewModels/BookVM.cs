@@ -26,5 +26,6 @@
         public string CoverUrl { get; set; }
         public string? publisherName { get; set; }
         public List<string>? AuthorsName { get; set; }
+        public List<string> bookFile { get; set; }
     }
 }

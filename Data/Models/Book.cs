@@ -17,6 +17,7 @@
         public Publisher Publisher { get; set; }
 
         public List<Book_Authors> Book_Authors { get; set; }
+        public List<BookFiles> Bookfiles { get; set; }
 
     }
 }

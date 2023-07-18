@@ -8,6 +8,7 @@ using My_Books.Data;
 using My_Books.Data.Interface;
 using My_Books.Data.Models;
 using My_Books.Data.Services;
+using My_Books.helpers;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -45,6 +46,9 @@ builder.Services.AddAuthentication(options =>
 
 });
 
+//Register send mail
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+builder.Services.AddTransient<IMailingService, mailingService>();
 builder.Services.AddScoped<IUserService,UserService>();
 builder.Services.AddScoped<IBlobStorageService,BlobStorageService>();
 // Add services to the container.
