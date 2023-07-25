@@ -5,6 +5,7 @@ using My_Books.Data.ViewModels;
 
 namespace My_Books.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AuthorsController : ControllerBase
@@ -15,7 +16,7 @@ namespace My_Books.Controllers
         {
             _service = service;
         }
-        [Authorize]
+       
         [HttpPost("Add-Author")]
         public IActionResult AddAuthor([FromBody] AuthorVM author)
         {
@@ -23,14 +24,16 @@ namespace My_Books.Controllers
             return Ok();
         }
 
-        
+        [AllowAnonymous]
         // Get 
         [HttpGet("Get-Authors-with-Books/{authorId}")]
         public IActionResult GetAuthorsById(int authorId)
         {
             var response=_service.GetAuthorById(authorId);
             return Ok(response);
-        }  
+        }
+
+        [AllowAnonymous]
         // Get 
         [HttpGet("AuthorById/{authorId}")]
         public IActionResult AuthorsById(int authorId)
@@ -39,8 +42,8 @@ namespace My_Books.Controllers
             return Ok(response);
         }
 
+        [AllowAnonymous]
         // Get 
-        [Authorize]
         [HttpGet]
         public IActionResult GetAllAuthors()
         {
@@ -48,7 +51,7 @@ namespace My_Books.Controllers
             return Ok(response);
         }
 
-        [Authorize]
+       
         // post edit authors
         [HttpPut("Edit/{id}")]
         public IActionResult EditAuthors(int id,[FromBody]AuthorVM author)

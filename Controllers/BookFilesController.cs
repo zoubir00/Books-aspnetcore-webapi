@@ -1,21 +1,28 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using My_Books.Data;
 using My_Books.Data.Interface;
 using My_Books.Data.Models;
+using My_Books.Data.Services;
 using My_Books.Data.ViewModels;
 
 namespace My_Books.Controllers
 {
-    public class BookFilesController : Controller
+   
+    [Route("api/[controller]")]
+    [ApiController]
+    public class BookFilesController : ControllerBase
     {
         private readonly IBlobStorageService _blobStorageService;
         private readonly ApplicationDbContext _context;
+        private readonly bookFilesService _service;
 
 
-        public BookFilesController(IBlobStorageService blobStorageService, ApplicationDbContext context)
+        public BookFilesController(IBlobStorageService blobStorageService, ApplicationDbContext context, bookFilesService service)
         {
             _blobStorageService = blobStorageService;
             _context = context;
+            _service = service;
         }
 
         [HttpPost("upload")]
@@ -37,6 +44,12 @@ namespace My_Books.Controllers
             _context.SaveChanges();
 
             return Ok();
+        }
+        [HttpGet("GetFiles")]
+        public IActionResult GetBookFiles()
+        {
+            var bookFiles = _service.GetBookFiles();
+            return Ok(bookFiles);
         }
     }
 }

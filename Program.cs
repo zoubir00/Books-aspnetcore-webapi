@@ -55,6 +55,7 @@ builder.Services.AddScoped<IBlobStorageService,BlobStorageService>();
 builder.Services.AddTransient<BooksService>();
 builder.Services.AddTransient<AuthorService>();
 builder.Services.AddTransient<PublisherService>();
+builder.Services.AddTransient<bookFilesService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

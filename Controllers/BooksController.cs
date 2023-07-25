@@ -6,6 +6,7 @@ using My_Books.Data;
 using My_Books.Data.Models;
 using My_Books.Data.Services;
 using My_Books.Data.ViewModels;
+using System.Xml.Serialization;
 
 namespace My_Books.Controllers
 {
@@ -74,6 +75,23 @@ namespace My_Books.Controllers
         {
             _service.DelteBook(Id);
             return Ok();
+        }
+        //Get data in xml 
+        [HttpGet("XmlFile")]
+        [AllowAnonymous]
+        public IActionResult GetXMLBook()
+        {
+            List<BookWithAuthorsVM> books = _service.GetAllBooks();
+            XmlSerializer serializer = new XmlSerializer(typeof(List<BookWithAuthorsVM>));
+            MemoryStream stream = new MemoryStream();
+            serializer.Serialize(stream, books);
+
+            //
+            string fileName = "people.xml";
+            string contentType = "application/xml";
+            //Retourner le conteu sous forme fichier
+            stream.Position = 0;
+            return File(stream, contentType, fileName);
         }
     }
 }
