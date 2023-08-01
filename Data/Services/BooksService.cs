@@ -5,9 +5,12 @@ using System.Text.Json;
 using System.Threading;
 using Microsoft.EntityFrameworkCore;
 using Azure.Storage.Blobs;
+using iTextSharp.text.pdf.qrcode;
+using QRCoder;
 
 namespace My_Books.Data.Services
 {
+ 
     public class BooksService
     {
         private readonly ApplicationDbContext _context;
@@ -79,7 +82,7 @@ namespace My_Books.Data.Services
                 AuthorsName = book.Book_Authors.Select(n => n.Author.FullName).ToList(),
                 bookFile = book.Bookfiles.Where(c => c.BookId == book.Id).Select(e => e.blobUrl).ToList()
 
-            }).FirstOrDefault();
+            }).FirstOrDefault();     
             return _bookWithAuthors;
         }
 

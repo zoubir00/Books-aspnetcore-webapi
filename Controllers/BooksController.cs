@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using iTextSharp.text.pdf.qrcode;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -6,10 +7,12 @@ using My_Books.Data;
 using My_Books.Data.Models;
 using My_Books.Data.Services;
 using My_Books.Data.ViewModels;
+using QRCoder;
 using System.Xml.Serialization;
 
 namespace My_Books.Controllers
 {
+   
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
@@ -86,7 +89,6 @@ namespace My_Books.Controllers
             MemoryStream stream = new MemoryStream();
             serializer.Serialize(stream, books);
 
-            //
             string fileName = "people.xml";
             string contentType = "application/xml";
             //Retourner le conteu sous forme fichier

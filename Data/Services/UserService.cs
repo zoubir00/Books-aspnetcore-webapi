@@ -42,12 +42,14 @@ namespace My_Books.Data.Services
             var result = await _userManager.CheckPasswordAsync(appUser, model.Password);
             if (!result)
             {
+               
                 return new UserManagerResponse
                 {
                     Message = "Credentials incorrects",
                     IsSuccess = false
                 };
             }
+            
             var claim = new[]
             {
                 new Claim("Email",model.Email) ,
